@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import gitlab_openid_cred
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -45,7 +46,18 @@ INSTALLED_APPS = [
     'codemirror2',
     'chartit',
     'graphos',
+    'social_django',
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.gitlab.GitLabOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+SOCIAL_AUTH_GITLAB_API_URL = 'https://gitlab.textdata.org'
+SOCIAL_AUTH_GITLAB_KEY = gitlab_openid_cred.application_id
+SOCIAL_AUTH_GITLAB_SECRET = gitlab_openid_cred.secret
+SOCIAL_AUTH_GITLAB_SCOPE = ['openid']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

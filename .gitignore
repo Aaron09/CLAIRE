@@ -14,3 +14,4 @@ apnews*
 cranfield*
 gitlab_private_token.py
 virtual_env/
+gitlab_openid_cred.py
